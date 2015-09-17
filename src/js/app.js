@@ -2,21 +2,27 @@ var map;
 
 var initialLocations = [
   {
-    name: 'Dumb Friends League',
+    name: 'Comrade Brewing Company',
     lat: 39.6791057,
     lng: -104.9030243,
+    address: '7667 E Iliff Ave, Denver, CO 80231'
   },
   {
     name: 'Copper Kettle Brewing Company',
     lat: 39.6847865,
-    lng: -104.88191
+    lng: -104.88191,
+    address: '1338 S Valentia St #100, Denver, CO 80247'
+  },
+  {
+    name: 'Bull & Bush Brewing Company',
+    lat: 396713773,
+    lng: -1048998513,
+    address: '4700 E Cherry Creek S Dr, Denver, CO 80246'
   }
 ];
 
 function initMap() {
   // Create a map object and specify the DOM element for display.
-
-  var $map = $('#map');
 
   map = new google.maps.Map(document.getElementById('map'), {
     center: {
@@ -27,10 +33,17 @@ function initMap() {
   });
 }
 
-var Location = function(data) {
+var Brewery = function(data) {
   this.name = ko.observable(data.name);
-  this.lat = ko.observable(data.lat);
-  this.lng = ko.observable(data.lng);
+  this.address = ko.observable(data.address);
+  this.coordinates = ko.observable(new google.maps.LatLng(data.lat, data.lng));
+
+  this.marker = new google.maps.Marker({
+    position: this.latLng(),
+    map: null,
+    title: this.name()
+  });
+
 };
 
 var ViewModel = function() {
@@ -41,7 +54,7 @@ var ViewModel = function() {
 
   initialLocations.forEach(function(locItem) {
     console.log(locItem);
-    this.locationList.push( new Location(locItem) );
+    this.locationList.push( new Brewery(locItem) );
   });
 };
 
