@@ -37,11 +37,12 @@ var ViewModel = function() {
   self = this;
 
   this.locationList = ko.observableArray([]);
+  console.log(this.locationList);
 
   initialLocations.forEach(function(locItem) {
     console.log(locItem);
-    self.locationList.push( new Location(locItem) );
+    this.locationList.push( new Location(locItem) );
   });
 };
 
-ko.applyBindings(new ViewModel());
+// ko.applyBindings(new ViewModel());
