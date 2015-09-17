@@ -1,26 +1,5 @@
 var map;
 
-var initialLocations = [
-  {
-    name: 'Comrade Brewing Company',
-    lat: 39.6791057,
-    lng: -104.9030243,
-    address: '7667 E Iliff Ave, Denver, CO 80231'
-  },
-  {
-    name: 'Copper Kettle Brewing Company',
-    lat: 39.6847865,
-    lng: -104.88191,
-    address: '1338 S Valentia St #100, Denver, CO 80247'
-  },
-  {
-    name: 'Bull & Bush Brewing Company',
-    lat: 396713773,
-    lng: -1048998513,
-    address: '4700 E Cherry Creek S Dr, Denver, CO 80246'
-  }
-];
-
 function initMap() {
   // Create a map object and specify the DOM element for display.
 
@@ -52,7 +31,7 @@ var ViewModel = function() {
   this.locationList = ko.observableArray([]);
   console.log(this.locationList);
 
-  initialLocations.forEach(function(locItem) {
+  breweryLocations.forEach(function(locItem) {
     console.log(locItem);
     this.locationList.push( new Brewery(locItem) );
   });
