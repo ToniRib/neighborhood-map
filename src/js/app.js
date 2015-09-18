@@ -3,7 +3,7 @@ var map;
 function initMap() {
   // Create a map object and specify the DOM element for display.
 
-  map = new google.maps.Map(document.getElementById('map'), {
+  map = new google.maps.Map(document.getElementById('google-map'), {
     center: {
       lat: 39.679,
       lng: -104.903
@@ -13,28 +13,20 @@ function initMap() {
 }
 
 var Brewery = function(data) {
-  this.name = ko.observable(data.name);
-  this.address = ko.observable(data.address);
-  this.coordinates = ko.observable(new google.maps.LatLng(data.lat, data.lng));
-
-  this.marker = new google.maps.Marker({
-    position: this.latLng(),
-    map: null,
-    title: this.name()
-  });
-
+  this.name = data.name;
+  this.lat = data.lat;
+  this.lng = data.lng;
+  this.address = data.address;
 };
 
 var ViewModel = function() {
-  self = this;
+  var self = this;
 
-  this.locationList = ko.observableArray([]);
-  console.log(this.locationList);
-
-  breweryLocations.forEach(function(locItem) {
-    console.log(locItem);
-    this.locationList.push( new Brewery(locItem) );
+  this.breweryList = ko.observableArray([]);
+  breweryLocations.forEach(function(brewItem) {
+    self.breweryList.push( new Brewery(brewItem) );
   });
+
 };
 
-// ko.applyBindings(new ViewModel());
+ko.applyBindings(new ViewModel() );
