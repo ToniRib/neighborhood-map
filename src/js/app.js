@@ -17,6 +17,13 @@ var Brewery = function(data) {
   this.lat = data.lat;
   this.lng = data.lng;
   this.address = data.address;
+
+  // Google Maps Marker for this location
+  var marker = new google.maps.Marker({
+    position: {lat: this.lat, lng: this.lng},
+    map: map,
+    title: this.name
+  });
 };
 
 var ViewModel = function() {
