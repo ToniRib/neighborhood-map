@@ -8,7 +8,8 @@ function initMap() {
       lat: 39.679,
       lng: -104.903
     },
-    zoom: 13
+    zoom: 13,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
   });
 }
 
@@ -20,7 +21,7 @@ var Brewery = function(data) {
 
   // Google Maps Marker for this location
   var marker = new google.maps.Marker({
-    position: {lat: this.lat, lng: this.lng},
+    position: new google.maps.LatLng(data.lat, data.lng),
     map: map,
     title: this.name
   });
@@ -29,10 +30,14 @@ var Brewery = function(data) {
 var ViewModel = function() {
   var self = this;
 
+  google.maps.event.addDomListener(window, 'load', initMap);
+
   this.breweryList = ko.observableArray([]);
   breweryLocations.forEach(function(brewItem) {
     self.breweryList.push( new Brewery(brewItem) );
   });
+
+
 
 };
 
