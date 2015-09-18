@@ -11,6 +11,12 @@ function initMap() {
     zoom: 13,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
+
+  var marker = new google.maps.Marker({
+    position: new google.maps.LatLng(39.6791057, -104.9030243),
+    map: map,
+    title: 'Comrade Brewing Co'
+  });
 }
 
 var Brewery = function(data) {
