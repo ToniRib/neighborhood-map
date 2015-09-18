@@ -9,6 +9,11 @@ var mapOptions = {
 };
 map = new google.maps.Map(mapCanvas, mapOptions);
 
+// Initialize the infowindow that will move to each marker
+var infowindow = new google.maps.InfoWindow({
+    content: 'default'
+});
+
 // Set up the ViewModel
 var ViewModel = function() {
   var self = this;
@@ -34,22 +39,18 @@ var Brewery = function(data) {
     title: this.name
   });
 
+  // Set up the content for the info window for this marker
   var contentString = '<div id="content">'+
-        '<div id="siteNotice">'+
-        '</div>'+
+        '<div id="siteNotice"></div>'+
         '<h4 id="firstHeading" class="firstHeading">' + this.name + '</h4>'+
-        '<div id="bodyContent">'+
-        '<p>address: ' + this.address + '</p>'+
-        '</div>'+
-        '</div>';
+        '<div id="bodyContent"><p>address: ' + this.address + '</p></div></div>';
 
-  var infowindow = new google.maps.InfoWindow({
-      content: contentString
-  });
-
+  // Add a listening event so if the user clicks on the marker
+  // the correct infowindow is displayed
   marker.addListener('click', function() {
-      infowindow.open(map, marker);
-    });
+     infowindow.setContent(contentString);
+     infowindow.open(map, marker);
+  });
 
 };
 
