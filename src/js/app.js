@@ -33,6 +33,24 @@ var Brewery = function(data) {
     map: map,
     title: this.name
   });
+
+  var contentString = '<div id="content">'+
+        '<div id="siteNotice">'+
+        '</div>'+
+        '<h4 id="firstHeading" class="firstHeading">' + this.name + '</h4>'+
+        '<div id="bodyContent">'+
+        '<p>address: ' + this.address + '</p>'+
+        '</div>'+
+        '</div>';
+
+  var infowindow = new google.maps.InfoWindow({
+      content: contentString
+  });
+
+  marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
+
 };
 
 // Kick everything off!
