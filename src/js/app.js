@@ -2,7 +2,7 @@
 var map;
 
 var infoWindow = new google.maps.InfoWindow({
-  content: '<div>h4></h4></h5></h5><p>Yelp Rating: </p></div>'
+  content: '<div><h4 id="brewery-name"></h4><p id="brewery-address"></p><p id="yelp"></p></div>'
 });
 
 // Set up the ViewModel
@@ -38,9 +38,11 @@ var ViewModel = function() {
   };
 
   self.breweryClick = function(brewery) {
-    self.getYelpData(brewery);
-    infoContent = '<div><h4>' + brewery.name() + '</h4></p>' + brewery.address() + '</p></div>';
+    infoContent = '<div><h4 id="brewery-name">' + brewery.name() + '</h4>' +
+                  '<p id="brewery-address">' + brewery.address() + '</p>' +
+                  '<p>Rating on yelp: <img id="yelp"></p></div>';
     infoWindow.setContent(infoContent);
+    self.getYelpData(brewery);
     infoWindow.open(map, brewery.marker());
   };
 
@@ -64,7 +66,7 @@ var ViewModel = function() {
         return text;
     };
 
-    // Set required parameters for authentication
+    // Set required parameters for authentication & search
     var parameters = {
       oauth_consumer_key: 'S46AQ1iwQtvxw_D1wQLHZA',
       oauth_token: 'TO9rPx1abdPe3lllR5Wo3WFrvz8CV9vw',
@@ -95,11 +97,12 @@ var ViewModel = function() {
       cache: true,
       dataType: 'jsonp',
       success: function(response) {
-        console.log(response);
+        // Update the infoWindow to display the yelp rating image
+        $('#yelp').attr("src", response.businesses[0].rating_img_url);
       }
     };
 
-    // Send off the ajaz request!
+    // Send off the ajaz request to Yelp
     $.ajax(ajaxSettings);
   };
 
