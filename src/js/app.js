@@ -38,9 +38,65 @@ var ViewModel = function() {
   };
 
   self.breweryClick = function(brewery) {
+    self.getYelpData(brewery);
     infoContent = '<div><h4>' + brewery.name() + '</h4></p>' + brewery.address() + '</p></div>';
     infoWindow.setContent(infoContent);
     infoWindow.open(map, brewery.marker());
+  };
+
+  self.getYelpData = function(brewery) {
+    // Uses the oauth-signature package installed with bower per https://github.com/bettiolo/oauth-signature-js
+
+    // Use the GET method for the request
+    var httpMethod = 'GET';
+
+    // Yelp API request url
+    var yelpURL = 'http://api.yelp.com/v2/search?term=' +  brewery.name() + '';
+
+    // nonce generator
+    // function credit of: https://blog.nraboy.com/2015/03/create-a-random-nonce-string-using-javascript/
+    var nonce = function(length) {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        for(var i = 0; i < length; i++) {
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        }
+        return text;
+    };
+
+    // Set required parameters for authentication
+    var parameters = {
+      oauth_consumer_key: 'S46AQ1iwQtvxw_D1wQLHZA',
+      oauth_token: 'TO9rPx1abdPe3lllR5Wo3WFrvz8CV9vw',
+      oauth_nonce: nonce(20),
+      oauth_timestamp: Math.floor(Date.now() / 1000),
+      oauth_signature_method: 'HMAC-SHA1',
+      oauth_version: '1.0'
+    };
+
+    // Set other API parameters
+    var consumerSecret = '8hqIHpplfRBLzs6YOqLZFfkx7jg';
+    var tokenSecret = 'evb3bjTox8RNlfZ5Ma74hqJjZWo';
+
+    // generates a RFC 3986 encoded, BASE64 encoded HMAC-SHA1 hash
+    var signature = oauthSignature.generate(httpMethod, yelpURL, parameters, consumerSecret, tokenSecret);
+
+    // Add signature to list of parameters
+    parameters.oauth_signature = signature;
+
+    // Set up the ajax settings
+    var ajaxSettings = {
+      url: yelpURL,
+      data: parameters,
+      cache: true,
+      dataType: 'jsonp',
+      success: function(response) {
+        console.log(response);
+      }
+    };
+
+    // Send off the ajaz request!
+    $.ajax(ajaxSettings);
   };
 
   // Add the listener for loading the page

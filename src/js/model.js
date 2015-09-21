@@ -62,7 +62,7 @@ var breweryLocations = [
     address: '1695 Platte St, Denver, CO 80202'
   },
   {
-    name: 'Wynkoop Brewering Company',
+    name: 'Wynkoop Brewing Company',
     lat: 39.7534879,
     lng: -104.9983932,
     address: '1634 18th St, Denver, CO 80202'
