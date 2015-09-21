@@ -51,7 +51,7 @@ var ViewModel = function() {
     var httpMethod = 'GET';
 
     // Yelp API request url
-    var yelpURL = 'http://api.yelp.com/v2/search?term=' +  brewery.name() + '';
+    var yelpURL = 'http://api.yelp.com/v2/search/';
 
     // nonce generator
     // function credit of: https://blog.nraboy.com/2015/03/create-a-random-nonce-string-using-javascript/
@@ -71,7 +71,11 @@ var ViewModel = function() {
       oauth_nonce: nonce(20),
       oauth_timestamp: Math.floor(Date.now() / 1000),
       oauth_signature_method: 'HMAC-SHA1',
-      oauth_version: '1.0'
+      oauth_version: '1.0',
+      callback: 'cb',
+      term: brewery.name(),
+      location: 'Denver, CO',
+      limit: 1
     };
 
     // Set other API parameters
