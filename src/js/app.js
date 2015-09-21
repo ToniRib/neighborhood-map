@@ -43,11 +43,6 @@ var ViewModel = function() {
     infoWindow.open(map, brewery.marker());
   };
 
-  self.setBrewery = function(clickedBrewery) {
-    // TODO: add functionality here...
-    console.log('set');
-  };
-
   // Add the listener for loading the page
   google.maps.event.addDomListener(window, 'load', function() {
     self.initialize();
