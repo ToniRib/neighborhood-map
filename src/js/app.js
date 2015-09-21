@@ -8,6 +8,7 @@ var infoWindow = new google.maps.InfoWindow({
 // Set up the ViewModel
 var ViewModel = function() {
   var self = this;
+  this.breweryList = ko.observableArray([]);
 
   // Create the google map zoomed in on Denver
   self.initialize = function() {
@@ -23,10 +24,15 @@ var ViewModel = function() {
 
   // Create the list of brewery locations from the model
   self.buildBreweryLocations = function() {
-    this.breweryList = ko.observableArray([]);
     breweryLocations.forEach(function(brewItem) {
       self.breweryList.push( new Brewery(brewItem) );
     });
+    console.log(self.breweryList());
+  };
+
+  self.setBrewery = function(clickedBrewery) {
+    // self.currentCat(clickedCat);
+    console.log('set');
   };
 
   // Add the listener for loading the page
@@ -63,4 +69,4 @@ var Brewery = function(data) {
 };
 
 // Kick everything off!
-ko.applyBindings(new ViewModel() );
+ko.applyBindings( new ViewModel() );

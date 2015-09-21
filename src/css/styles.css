@@ -1,8 +1,14 @@
+body {
+	font-size: 14px;
+}
+
 h1 {
 	text-align: center;
+	padding: 0 0.5em;
 }
 
 .main-map {
 	height: 600px;
 	width: 100%;
+	margin-top: 1em;
 }

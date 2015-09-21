@@ -3,13 +3,24 @@
 <head>
 	<meta charset="utf-8">
 	<title>Denver Brewery Map</title>
+	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/styles.css">
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDK0hCvi3Fh_eOu5CiX_l0A_ElZoZFkWXE"></script>
 	<meta name="viewport" content="width=device-width">
 </head>
 <body>
-	<h1>Neighborhood Map: Favorite Denver Breweries</h1>
-	<div id="google-map" class="main-map"></div>
+	<div class="container">
+		<div class="col-md-3">
+			<h1>Denver Breweries I've Visited</h1>
+			<ul data-bind="foreach: breweryList">
+				<li data-bind:"text: name, click: $parent.setBrewery"></li>
+			</ul>
+		</div>
+
+		<div class="col-md-9">
+			<div id="google-map" class="main-map"></div>
+		</div>
+	</div>
 
 	<script src="js/lib/jQuery.js"></script>
 	<script src="js/lib/knockout-3.2.0.js"></script>
