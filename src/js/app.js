@@ -76,7 +76,7 @@ var ViewModel = function() {
       oauth_version: '1.0',
       callback: 'cb',
       term: brewery.name(),
-      location: 'Denver, CO',
+      location: 'Denver, CO', // always search within Denver, CO
       limit: 1
     };
 
