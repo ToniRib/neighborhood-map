@@ -29,6 +29,20 @@ var ViewModel = function() {
     });
   };
 
+  self.setBreweryClickFunctions = function() {
+    self.breweryList().forEach(function(brewery) {
+      google.maps.event.addListener(brewery.marker(), 'click', function() {
+        self.breweryClick(brewery);
+      });
+    });
+  };
+
+  self.breweryClick = function(brewery) {
+    infoContent = '<div><h4>' + brewery.name() + '</h4></p>' + brewery.address() + '</p></div>';
+    infoWindow.setContent(infoContent);
+    infoWindow.open(map, brewery.marker());
+  };
+
   self.setBrewery = function(clickedBrewery) {
     // TODO: add functionality here...
     console.log('set');
@@ -38,12 +52,13 @@ var ViewModel = function() {
   google.maps.event.addDomListener(window, 'load', function() {
     self.initialize();
     self.buildBreweryLocations();
+    self.setBreweryClickFunctions();
   });
 };
 
 // Brewery constructor to create breweries & marks from the model
 var Brewery = function(data) {
-  var marker, infoContent;
+  var marker;
   this.name = ko.observable(data.name);
   this.lat = ko.observable(data.lat);
   this.lng = ko.observable(data.lng);
@@ -54,13 +69,6 @@ var Brewery = function(data) {
     position: new google.maps.LatLng(this.lat(), this.lng()),
     map: map,
     title: this.name()
-  });
-
-  infoContent = '<div><h4>' + this.name() + '</h4></p>' + this.address() + '</p></div>';
-
-  marker.addListener('click', function() {
-    infoWindow.setContent(infoContent);
-    infoWindow.open(map, marker);
   });
 
   // Set the marker as a knockout observables
