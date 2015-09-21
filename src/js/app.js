@@ -1,57 +1,65 @@
 // Initialize the map
 var map;
-var mapCanvas = document.getElementById('google-map');
-var cenLatLng = new google.maps.LatLng(breweryLocations[0].lat, breweryLocations[0].lng);
-var mapOptions = {
-  center: cenLatLng,
-  zoom: 12,
-  mapTypeId: google.maps.MapTypeId.ROADMAP
-};
-map = new google.maps.Map(mapCanvas, mapOptions);
 
-// Initialize the infowindow that will move to each marker
-var infowindow = new google.maps.InfoWindow({
-    content: 'default'
+var infoWindow = new google.maps.InfoWindow({
+  content: 'default'
 });
 
 // Set up the ViewModel
 var ViewModel = function() {
   var self = this;
 
-  this.breweryList = ko.observableArray([]);
-  breweryLocations.forEach(function(brewItem) {
-    self.breweryList.push( new Brewery(brewItem) );
-  });
+  // Create the google map zoomed in on Denver
+  self.initialize = function() {
+    var mapCanvas = document.getElementById('google-map');
+    var cenLatLng = new google.maps.LatLng(39.716209, -104.940702);
+    var mapOptions = {
+      center: cenLatLng,
+      zoom: 12,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    map = new google.maps.Map(mapCanvas, mapOptions);
+  };
 
+  // Create the list of brewery locations from the model
+  self.buildBreweryLocations = function() {
+    this.breweryList = ko.observableArray([]);
+    breweryLocations.forEach(function(brewItem) {
+      self.breweryList.push( new Brewery(brewItem) );
+    });
+  };
+
+  // Add the listener for loading the page
+  google.maps.event.addDomListener(window, 'load', function() {
+    self.initialize();
+    self.buildBreweryLocations();
+  });
 };
 
-// Create the brewery objects
+// Brewery constructor to create breweries & marks from the model
 var Brewery = function(data) {
-  this.name = data.name;
-  this.lat = data.lat;
-  this.lng = data.lng;
-  this.address = data.address;
+  var marker, infoContent;
+  this.name = ko.observable(data.name);
+  this.lat = ko.observable(data.lat);
+  this.lng = ko.observable(data.lng);
+  this.address = ko.observable(data.address);
 
   // Google Maps Marker for this location
-  var marker = new google.maps.Marker({
-    position: new google.maps.LatLng(data.lat, data.lng),
+  marker = new google.maps.Marker({
+    position: new google.maps.LatLng(this.lat(), this.lng()),
     map: map,
-    title: this.name
+    title: this.name()
   });
 
-  // Set up the content for the info window for this marker
-  var contentString = '<div id="content">'+
-        '<div id="siteNotice"></div>'+
-        '<h4 id="firstHeading" class="firstHeading">' + this.name + '</h4>'+
-        '<div id="bodyContent"><p>address: ' + this.address + '</p></div></div>';
+  infoContent = '<div><h4>' + this.name() + '</h4></p>' + this.address() + '</p></div>'
 
-  // Add a listening event so if the user clicks on the marker
-  // the correct infowindow is displayed
   marker.addListener('click', function() {
-     infowindow.setContent(contentString);
-     infowindow.open(map, marker);
+    infoWindow.setContent(infoContent);
+    infoWindow.open(map, marker);
   });
 
+  // Set the marker as a knockout observables
+  this.marker = ko.observable(marker);
 };
 
 // Kick everything off!

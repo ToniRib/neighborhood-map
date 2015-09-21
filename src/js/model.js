@@ -33,8 +33,8 @@ var breweryLocations = [
   },
   {
     name: 'Former Future Brewing Company',
-    lat: 39.6865707,
-    lng: -104.9609628,
+    lat: 39.6933935,
+    lng: -104.9870699,
     address: '1290 S Broadway, Denver, CO 80210'
   },
   {
