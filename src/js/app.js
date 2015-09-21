@@ -37,9 +37,9 @@ var Brewery = function(data) {
 
   // Google Maps Marker for this location
   marker = new google.maps.Marker({
-    position: new google.maps.LatLng(data.lat, data.lng),
+    position: new google.maps.LatLng(this.lat(), this.lng()),
     map: map,
-    title: this.name
+    title: this.name()
   });
 };
 
