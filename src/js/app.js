@@ -5,7 +5,7 @@ var ViewModel = function() {
 
   self.initialize = function() {
     var mapCanvas = document.getElementById('google-map');
-    var cenLatLng = new google.maps.LatLng(breweryLocations[0].lat, breweryLocations[0].lng);
+    var cenLatLng = new google.maps.LatLng(39.716209, -104.940702);
     var mapOptions = {
       center: cenLatLng,
       zoom: 12,
