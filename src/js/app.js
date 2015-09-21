@@ -1,25 +1,5 @@
 var map;
 
-// function initMap() {
-//   // Create a map object and specify the DOM element for display.
-
-//   map = new google.maps.Map(document.getElementById('google-map'), {
-//     center: {
-//       lat: 39.679,
-//       lng: -104.903
-//     },
-//     zoom: 13,
-//     mapTypeId: google.maps.MapTypeId.ROADMAP
-//   });
-
-//   // Dummy marker for testing
-//   var marker = new google.maps.Marker({
-//     position: new google.maps.LatLng(39.6791057, -104.9030243),
-//     map: map,
-//     title: 'Comrade Brewing Co'
-//   });
-// }
-
 var ViewModel = function() {
   var self = this;
   console.log('third');
@@ -30,22 +10,26 @@ var ViewModel = function() {
     var cenLatLng = new google.maps.LatLng(breweryLocations[0].lat, breweryLocations[0].lng);
     var mapOptions = {
       center: cenLatLng,
-      zoom: 13,
+      zoom: 12,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     map = new google.maps.Map(mapCanvas, mapOptions);
   };
 
   console.log('fourth');
-  this.breweryList = ko.observableArray([]);
-  breweryLocations.forEach(function(brewItem) {
-    self.breweryList.push( new Brewery(brewItem) );
-    console.log('11');
-  });
+  self.buildBreweryLocations = function() {
+    this.breweryList = ko.observableArray([]);
+    breweryLocations.forEach(function(brewItem) {
+      self.breweryList.push( new Brewery(brewItem) );
+      console.log('11');
+    });
+  };
 
   console.log('4');
-  google.maps.event.addDomListener(window, 'load', self.initialize);
-
+  google.maps.event.addDomListener(window, 'load', function() {
+    self.initialize();
+    self.buildBreweryLocations();
+  });
 };
 
 console.log('first');
