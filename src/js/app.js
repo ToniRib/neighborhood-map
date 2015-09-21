@@ -13,7 +13,7 @@ var ViewModel = function() {
   // Create the google map zoomed in on Denver
   self.initialize = function() {
     var mapCanvas = document.getElementById('google-map');
-    var cenLatLng = new google.maps.LatLng(39.716209, -104.940702);
+    var cenLatLng = new google.maps.LatLng(39.711502, -104.920702);
     var mapOptions = {
       center: cenLatLng,
       zoom: 12,
