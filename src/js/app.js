@@ -2,7 +2,7 @@
 var map;
 
 var infoWindow = new google.maps.InfoWindow({
-  content: 'default'
+  content: '<div>h4></h4></h5></h5><p>Yelp Rating: </p></div>'
 });
 
 // Set up the ViewModel
@@ -27,11 +27,10 @@ var ViewModel = function() {
     breweryLocations.forEach(function(brewItem) {
       self.breweryList.push( new Brewery(brewItem) );
     });
-    console.log(self.breweryList());
   };
 
   self.setBrewery = function(clickedBrewery) {
-    // self.currentCat(clickedCat);
+    // TODO: add functionality here...
     console.log('set');
   };
 
@@ -57,7 +56,7 @@ var Brewery = function(data) {
     title: this.name()
   });
 
-  infoContent = '<div><h4>' + this.name() + '</h4></p>' + this.address() + '</p></div>'
+  infoContent = '<div><h4>' + this.name() + '</h4></p>' + this.address() + '</p></div>';
 
   marker.addListener('click', function() {
     infoWindow.setContent(infoContent);
