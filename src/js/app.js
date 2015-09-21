@@ -28,13 +28,15 @@ var ViewModel = function() {
 };
 
 var Brewery = function(data) {
+  var marker;
   this.name = ko.observable(data.name);
   this.lat = ko.observable(data.lat);
   this.lng = ko.observable(data.lng);
   this.address = ko.observable(data.address);
+  this.marker = ko.observable(marker);
 
   // Google Maps Marker for this location
-  var marker = new google.maps.Marker({
+  marker = new google.maps.Marker({
     position: new google.maps.LatLng(data.lat, data.lng),
     map: map,
     title: this.name
