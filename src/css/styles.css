@@ -7,6 +7,14 @@ h1 {
 	padding: 0 0.5em;
 }
 
+ul {
+	list-style-type: none;
+}
+
+li {
+	margin: 0.5em 0;
+}
+
 .main-map {
 	height: 600px;
 	width: 100%;
