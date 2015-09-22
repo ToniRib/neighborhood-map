@@ -68,3 +68,97 @@ a:hover {
   width: 100%;
   margin-top: 1em;
 }
+
+/* Mobile Styles for Offscreen Menu */
+
+.nav-expander {
+  background: none repeat scroll 0 0 #000000;
+  color: #FFFFFF;
+  display: block;
+  font-size: 1em;
+  margin-right: 0;
+  padding: 1em;
+  position: absolute;
+  right: 0;
+  text-decoration: none;
+  text-transform: uppercase;
+  top: 0;
+  transition: right 0.3s ease-in-out 0s;
+  width: 90px;
+  z-index: 12;
+
+  transition: right 0.3s ease-in-out 0s;
+  -webkit-transition: right 0.3s ease-in-out 0s;
+  -moz-transition: right 0.3s ease-in-out 0s;
+  -o-transition: right 0.3s ease-in-out 0s;
+}
+
+.nav-expander:hover {
+  cursor: pointer;
+}
+
+.nav-expander.fixed {
+  position: fixed;
+  display: none;
+}
+
+.nav-expanded a.nav-expander.fixed {
+  right: 20em;
+}
+
+nav {
+  background: #2d2f33;
+  display: block;
+  height: 100%;
+  overflow: auto;
+  position: fixed;
+  right: -20em;
+  font-size: 15px;
+  top: 0;
+  width: 20em;
+  z-index: 2000;
+
+  transition: right 0.3s ease-in-out 0s;
+  -webkit-transition: right 0.3s ease-in-out 0s;
+  -moz-transition: right 0.3s ease-in-out 0s;
+  -o-transition: right 0.3s ease-in-out 0s;
+
+}
+
+.nav-expanded nav {
+  right: 0;
+}
+
+.nav-expanded {
+  margin-left: 0em;
+  transition: right 0.4s ease-in-out 0s;
+  -webkit-transition: right 0.4s ease-in-out 0s;
+  -moz-transition: right 0.4s ease-in-out 0s;
+  -o-transition: right 0.4s ease-in-out 0s;
+}
+
+.main-menu {
+  background-color: black;
+}
+
+.mobile-list {
+  padding-left: 1em;
+}
+
+/* Media Queries */
+
+@media (max-width: 992px) {
+  .desktop-list {
+    display: none;
+  }
+
+  h1,
+  h3,
+  form {
+    padding-left: 1em;
+  }
+
+  .nav-expander.fixed {
+    display: block;
+  }
+}

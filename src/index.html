@@ -22,7 +22,7 @@
           <input type="submit" value="search" class="search-btn">
         </form>
       </div>
-      <ul data-bind="foreach: filteredBreweryList">
+      <ul data-bind="foreach: filteredBreweryList" class="desktop-list">
         <li data-bind="text: name, click: $parent.breweryClick"></li>
       </ul>
     </div>
@@ -33,6 +33,20 @@
     </div>
 
     <!-- TODO: figure out the hamburger button & sliding menu -->
+    <nav class="mobile main-menu">
+      <ul data-bind="foreach: filteredBreweryList" class="mobile-list">
+        <li data-bind="text: name, click: $parent.breweryClick"></li>
+      </ul>
+    </nav>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-header pull-right">
+        <a id="nav-expander" class="nav-expander fixed">
+          MENU
+        </a>
+      </div>
+    </div>
+    <!-- TODO: figure out the hamburger button & sliding menu -->
 
     <!-- Load the scripts -->
     <script src="js/lib/jQuery.js"></script>
@@ -40,6 +54,7 @@
     <script src="../bower_components/oauth-signature/dist/oauth-signature.js"></script>
     <script src="js/model.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/mobile.js"></script>
 
 </body>
 </html>
