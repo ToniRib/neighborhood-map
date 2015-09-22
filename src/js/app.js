@@ -36,7 +36,6 @@ var ViewModel = function() {
         self.breweryClick(brewery);
       });
     });
-    self.filteredBreweryList(self.breweryList());
   };
 
   self.breweryClick = function(brewery) {
@@ -46,6 +45,21 @@ var ViewModel = function() {
     infoWindow.setContent(infoContent);
     self.getYelpData(brewery);
     infoWindow.open(map, brewery.marker());
+  };
+
+  self.filterBreweries = function() {
+    self.filteredBreweryList([]);
+    searchString = $('#search-str').val().toLowerCase();
+    len = self.breweryList().length;
+    console.log(len);
+    for (i = 0; i < len; i++) {
+      breweryName = self.breweryList()[i].name().toLowerCase();
+      breweryNeighborhood = self.breweryList()[i].neighborhood().toLowerCase();
+      if (breweryName.indexOf(searchString) > -1 || breweryNeighborhood.indexOf(searchString) > -1) {
+        self.filteredBreweryList.push(self.breweryList()[i]);
+      }
+    };
+    console.log(self.filteredBreweryList());
   };
 
   self.getYelpData = function(brewery) {
@@ -108,22 +122,12 @@ var ViewModel = function() {
     $.ajax(ajaxSettings);
   };
 
-  self.filterBreweries = function() {
-    self.filteredBreweryList([]);
-    searchString = $('#search-str').val().toLowerCase();
-    breweryLocations.forEach(function(brewItem) {
-      if (brewItem.name.toLowerCase().indexOf(searchString) > -1 || brewItem.neighborhood.toLowerCase().indexOf(searchString) > -1) {
-        self.filteredBreweryList.push(brewItem);
-      }
-    });
-    console.log(self.filteredBreweryList());
-  };
-
   // Add the listener for loading the page
   google.maps.event.addDomListener(window, 'load', function() {
     self.initialize();
     self.buildBreweryLocations();
     self.setBreweryClickFunctions();
+    self.filteredBreweryList(self.breweryList());
   });
 };
 
@@ -134,6 +138,7 @@ var Brewery = function(data) {
   this.lat = ko.observable(data.lat);
   this.lng = ko.observable(data.lng);
   this.address = ko.observable(data.address);
+  this.neighborhood = ko.observable(data.neighborhood);
 
   // Google Maps Marker for this location
   marker = new google.maps.Marker({
