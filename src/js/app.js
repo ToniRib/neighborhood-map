@@ -44,8 +44,9 @@ var ViewModel = function() {
   self.breweryClick = function(brewery) {
     // Set the content of the infoWindow
     infoContent = '<div><h4 id="brewery-name">' + brewery.name() + '</h4>' +
-                  '<p id="brewery-address">' + brewery.address() + '</p>' +
-                  '<p>Rating on yelp: <img id="yelp"></p></div>';
+                  '<h5 id="brewery-address">' + brewery.address() + '</h5>' +
+                  '<p>Rating on <a id="yelp-url">yelp</a>: ' +
+                  '<img id="yelp"></p></div>';
     infoWindow.setContent(infoContent);
     self.getYelpData(brewery);
 
@@ -125,6 +126,8 @@ var ViewModel = function() {
       limit: 1
     };
 
+    console.log(parameters);
+
     // Set other API parameters
     var consumerSecret = '8hqIHpplfRBLzs6YOqLZFfkx7jg';
     var tokenSecret = 'evb3bjTox8RNlfZ5Ma74hqJjZWo';
@@ -144,6 +147,8 @@ var ViewModel = function() {
       success: function(response) {
         // Update the infoWindow to display the yelp rating image
         $('#yelp').attr("src", response.businesses[0].rating_img_url);
+        $('#yelp-url').attr("href", response.businesses[0].url);
+        console.log(response);
       }
     };
 

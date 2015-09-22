@@ -18,7 +18,7 @@ var breweryLocations = [
     neighborhood: 'Aurora'
   },
   {
-    name: 'Bull & Bush Brewing Co',
+    name: 'Bull & Bush',
     lat: 39.7030711,
     lng: -104.9324947,
     address: '4700 E Cherry Creek S Dr, Denver, CO 80246',

@@ -1,31 +1,58 @@
 body {
-	font-size: 14px;
+  /*font-size: 14px;*/
+  font: normal 14px 'Roboto Condensed', sans-serif;
+  background-color: #0d0d0d;
 }
 
 h1 {
-	padding: 0 0.5em;
-	font-size: 1.3em;
+  font-size: 1.5em;
+  color: #a62139;
+}
+
+h3 {
+  color: #d9d9d9;
+}
+
+h4 {
+  color: black;
+  margin: 0;
+  font-size: 1.2em;
+}
+
+h5 {
+  margin: 0;
+  color: #707070;
+}
+
+a {
+  text-decoration: none;
+  color: #a62139;
+}
+
+a:hover {
+  color: #388e8e;
 }
 
 ul {
-	list-style-type: none;
-	padding-left: 0;
+  list-style-type: none;
+  padding-left: 0;
 }
 
 li {
-	margin: 0.5em 0;
+  margin: 0.5em 0;
+  color: #d9d9d9;
+}
+
+li:hover {
+  color: #d92b4b;
 }
 
 .main-map {
-	height: 600px;
-	width: 100%;
-	margin-top: 1em;
+  height: 600px;
+  width: 100%;
+  margin-top: 1em;
 }
 
 .search-input {
-	margin-right: 1em;
-}
-
-.invisible {
-	display: none;
+  margin-right: 1em;
 }
