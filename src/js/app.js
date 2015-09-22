@@ -45,6 +45,7 @@ var ViewModel = function() {
     // Set the content of the infoWindow
     infoContent = '<div><h4 id="brewery-name">' + brewery.name() + '</h4>' +
                   '<h5 id="brewery-address">' + brewery.address() + '</h5>' +
+                  '<h6 id="brewery-neighborhood">' + brewery.neighborhood() + '</h6>' +
                   '<p>Rating on <a id="yelp-url">yelp</a>: ' +
                   '<img id="yelp"></p></div>';
     infoWindow.setContent(infoContent);

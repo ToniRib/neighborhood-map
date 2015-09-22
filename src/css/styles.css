@@ -6,7 +6,7 @@ body {
 
 h1 {
   font-size: 1.5em;
-  color: #a62139;
+  color: #a62739;
 }
 
 h3 {
@@ -22,6 +22,13 @@ h4 {
 h5 {
   margin: 0;
   color: #707070;
+  font-size: 1em;
+}
+
+h6 {
+  color: #388e8e;
+  font-size: 0.9em;
+  margin-top: 0.3em;
 }
 
 a {
