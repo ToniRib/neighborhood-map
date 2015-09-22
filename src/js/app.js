@@ -9,6 +9,7 @@ var infoWindow = new google.maps.InfoWindow({
 var ViewModel = function() {
   var self = this;
   this.breweryList = ko.observableArray([]);
+  this.filteredBreweryList = ko.observableArray([]);
 
   // Create the google map zoomed in on Denver
   self.initialize = function() {
@@ -35,6 +36,7 @@ var ViewModel = function() {
         self.breweryClick(brewery);
       });
     });
+    self.filteredBreweryList(self.breweryList());
   };
 
   self.breweryClick = function(brewery) {
@@ -104,6 +106,17 @@ var ViewModel = function() {
 
     // Send off the ajaz request to Yelp
     $.ajax(ajaxSettings);
+  };
+
+  self.filterBreweries = function() {
+    self.filteredBreweryList([]);
+    searchString = $('#search-str').val().toLowerCase();
+    breweryLocations.forEach(function(brewItem) {
+      if (brewItem.name.toLowerCase().indexOf(searchString) > -1 || brewItem.neighborhood.toLowerCase().indexOf(searchString) > -1) {
+        self.filteredBreweryList.push(brewItem);
+      }
+    });
+    console.log(self.filteredBreweryList());
   };
 
   // Add the listener for loading the page

@@ -3,12 +3,13 @@ body {
 }
 
 h1 {
-	text-align: center;
 	padding: 0 0.5em;
+	font-size: 1.3em;
 }
 
 ul {
 	list-style-type: none;
+	padding-left: 0;
 }
 
 li {
@@ -19,4 +20,12 @@ li {
 	height: 600px;
 	width: 100%;
 	margin-top: 1em;
+}
+
+.search-input {
+	margin-right: 1em;
+}
+
+.invisible {
+	display: none;
 }

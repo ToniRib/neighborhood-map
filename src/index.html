@@ -12,7 +12,13 @@
 	<div class="container">
 		<div class="col-md-3">
 			<h1>Denver Breweries I've Visited</h1>
-			<ul data-bind="foreach: breweryList">
+			<div id="search">
+				<form id="brewery-search" data-bind="submit: filterBreweries">
+				        <input type="text" name="search-string" id="search-str" class="search-input">
+				        <input type="submit" value="search" class="search-btn">
+				</form>
+			</div>
+			<ul data-bind="foreach: filteredBreweryList">
 				<li data-bind="text: name, click: $parent.breweryClick"></li>
 			</ul>
 		</div>
