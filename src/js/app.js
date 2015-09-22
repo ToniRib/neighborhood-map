@@ -1,6 +1,7 @@
 // Initialize the map
 var map;
 
+// Initialize the default infoWindow
 var infoWindow = new google.maps.InfoWindow({
   content: '<div><h4 id="brewery-name"></h4><p id="brewery-address"></p><p id="yelp"></p></div>'
 });
@@ -30,6 +31,7 @@ var ViewModel = function() {
     });
   };
 
+  // Set up an event listener for clicks for each brewery
   self.setBreweryClickFunctions = function() {
     self.breweryList().forEach(function(brewery) {
       google.maps.event.addListener(brewery.marker(), 'click', function() {
@@ -38,28 +40,55 @@ var ViewModel = function() {
     });
   };
 
+  // Function to handle clicking on a brewery (either in list or marker)
   self.breweryClick = function(brewery) {
+    // Set the content of the infoWindow
     infoContent = '<div><h4 id="brewery-name">' + brewery.name() + '</h4>' +
                   '<p id="brewery-address">' + brewery.address() + '</p>' +
                   '<p>Rating on yelp: <img id="yelp"></p></div>';
     infoWindow.setContent(infoContent);
     self.getYelpData(brewery);
+
+    // Open the infoWindow at the marker location
     infoWindow.open(map, brewery.marker());
+
+    // Current brewery marker bounces once when clicked
+    self.setMarkerAnimation(brewery);
   };
 
+  // Sets the currenter marker to bounce once when clicked
+  self.setMarkerAnimation = function(brewery) {
+    brewery.marker().setAnimation(google.maps.Animation.BOUNCE);
+    setTimeout( function() { brewery.marker().setAnimation(null); }, 750);
+  };
+
+  // Function to handle filtering of breweries based on the search form
   self.filterBreweries = function() {
+    // Set the filtered brewery list to an empty array
     self.filteredBreweryList([]);
-    searchString = $('#search-str').val().toLowerCase();
-    len = self.breweryList().length;
-    console.log(len);
-    for (i = 0; i < len; i++) {
-      breweryName = self.breweryList()[i].name().toLowerCase();
-      breweryNeighborhood = self.breweryList()[i].neighborhood().toLowerCase();
-      if (breweryName.indexOf(searchString) > -1 || breweryNeighborhood.indexOf(searchString) > -1) {
+
+    // Get the search string and the length of the original brewery list
+    var searchString = $('#search-str').val().toLowerCase();
+    var len = self.breweryList().length;
+
+    // Loop through each brewery in the brewery list
+    for (var i = 0; i < len; i++) {
+      // Get the current brewery name & neighborhood
+      var breweryName = self.breweryList()[i].name().toLowerCase();
+      var breweryNeighborhood = self.breweryList()[i].neighborhood().toLowerCase();
+
+      // If the name or neighborhood match the search string,
+      // add the brewery to the filtered brewery list
+      if (breweryName.indexOf(searchString) > -1 ||
+          breweryNeighborhood.indexOf(searchString) > -1) {
         self.filteredBreweryList.push(self.breweryList()[i]);
+        // Set the map property of the marker to the map
+        self.breweryList()[i].marker().setMap(map);
+      } else {
+        // Set the map property of the marker to null so it won't be visible
+        self.breweryList()[i].marker().setMap(null);
       }
     };
-    console.log(self.filteredBreweryList());
   };
 
   self.getYelpData = function(brewery) {
@@ -133,6 +162,7 @@ var ViewModel = function() {
 
 // Brewery constructor to create breweries & marks from the model
 var Brewery = function(data) {
+  // Set all the properties as knockout observables
   var marker;
   this.name = ko.observable(data.name);
   this.lat = ko.observable(data.lat);
@@ -147,7 +177,7 @@ var Brewery = function(data) {
     title: this.name()
   });
 
-  // Set the marker as a knockout observables
+  // Set the marker as a knockout observable
   this.marker = ko.observable(marker);
 };
 
