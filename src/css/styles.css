@@ -1,5 +1,6 @@
+/* Main Styles */
+
 body {
-  /*font-size: 14px;*/
   font: normal 14px 'Roboto Condensed', sans-serif;
   background-color: #0d0d0d;
 }
@@ -12,6 +13,26 @@ h1 {
 h3 {
   color: #d9d9d9;
 }
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+li {
+  margin: 0.5em 0;
+  color: #d9d9d9;
+}
+
+li:hover {
+  color: #d92b4b;
+}
+
+.search-input {
+  margin-right: 1em;
+}
+
+/* InfoWindow Styles */
 
 h4 {
   color: black;
@@ -40,26 +61,10 @@ a:hover {
   color: #388e8e;
 }
 
-ul {
-  list-style-type: none;
-  padding-left: 0;
-}
-
-li {
-  margin: 0.5em 0;
-  color: #d9d9d9;
-}
-
-li:hover {
-  color: #d92b4b;
-}
+/* Map */
 
 .main-map {
   height: 600px;
   width: 100%;
   margin-top: 1em;
-}
-
-.search-input {
-  margin-right: 1em;
 }

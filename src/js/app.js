@@ -3,6 +3,7 @@ var map;
 
 // Initialize the default infoWindow
 var infoWindow = new google.maps.InfoWindow({
+  // default content
   content: '<div><h4 id="brewery-name"></h4><p id="brewery-address"></p><p id="yelp"></p></div>'
 });
 
