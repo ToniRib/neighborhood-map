@@ -33,23 +33,12 @@ module.exports = function(grunt) {
           ext: '.min.css'
         }]
       }
-    },
-
-    // Inline the CSS into the index.html file
-    // inlinecss: {
-    //   main: {
-    //     options: {},
-    //     files: {
-    //       'dist/index.html': 'src/index.html'
-    //     }
-    //   }
-    // },
+    }
   });
 
   // Tell grunt to use the plugins
-  grunt.loadNpmTasks('grunt-inline-css');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  // grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
 
   // Register the tasks as default actions for the 'grunt' command
   grunt.registerTask('default', ['uglify', 'cssmin']);
