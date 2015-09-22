@@ -49,7 +49,7 @@ h5 {
 h6 {
   color: #388e8e;
   font-size: 0.9em;
-  margin-top: 0.3em;
+  margin: 0.3em 0 0 0;
 }
 
 a {
@@ -70,6 +70,12 @@ a:hover {
 }
 
 /* Mobile Styles for Offscreen Menu */
+/* Credits:;
+* Off-canvas slide menu for bootstrap:
+* http://blog.themearmada.com/off-canvas-slide-menu-for-bootstrap/
+* CSS Hamburger icon:
+* http://elijahmanor.com/css-animated-hamburger-icon/
+*/
 
 .nav-expander {
   background: none repeat scroll 0 0 #000000;
@@ -80,17 +86,34 @@ a:hover {
   padding: 1em;
   position: absolute;
   right: 0;
-  text-decoration: none;
-  text-transform: uppercase;
   top: 0;
   transition: right 0.3s ease-in-out 0s;
-  width: 90px;
+  width: 60px;
   z-index: 12;
 
   transition: right 0.3s ease-in-out 0s;
   -webkit-transition: right 0.3s ease-in-out 0s;
   -moz-transition: right 0.3s ease-in-out 0s;
   -o-transition: right 0.3s ease-in-out 0s;
+}
+
+.nav-expander span,
+.nav-expander span:before,
+.nav-expander span:after {
+  cursor: pointer;
+  border-radius: 1px;
+  height: 5px;
+  width: 35px;
+  background: white;
+  position: absolute;
+  display: block;
+  content: '';
+}
+.nav-expander span:before {
+  top: -10px;
+}
+.nav-expander span:after {
+  bottom: -10px;
 }
 
 .nav-expander:hover {

@@ -32,21 +32,19 @@
       <div id="google-map" class="main-map"></div>
     </div>
 
-    <!-- TODO: figure out the hamburger button & sliding menu -->
+    <!-- Start of mobile navigation -->
     <nav class="mobile main-menu">
       <ul data-bind="foreach: filteredBreweryList" class="mobile-list">
-        <li data-bind="text: name, click: $parent.breweryClick"></li>
+        <li data-bind="text: name, click: $parent.breweryClick" class="mobile-item"></li>
       </ul>
     </nav>
 
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-header pull-right">
-        <a id="nav-expander" class="nav-expander fixed">
-          MENU
-        </a>
+        <a id="nav-expander" class="nav-expander fixed" href="#"><span></span></a>
       </div>
     </div>
-    <!-- TODO: figure out the hamburger button & sliding menu -->
+    <!-- End of mobile navigation -->
 
     <!-- Load the scripts -->
     <script src="js/lib/jQuery.js"></script>
