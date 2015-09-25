@@ -9,9 +9,11 @@ var infoWindow = new google.maps.InfoWindow({
 
 // Set up the ViewModel
 var ViewModel = function() {
+  'use strict';
+
   var self = this;
-  this.breweryList = ko.observableArray([]);
-  this.filteredBreweryList = ko.observableArray([]);
+  self.breweryList = ko.observableArray([]);
+  self.filteredBreweryList = ko.observableArray([]);
 
   // Create the google map zoomed in on Denver
   self.initialize = function() {
@@ -44,11 +46,11 @@ var ViewModel = function() {
   // Function to handle clicking on a brewery (either in list or marker)
   self.breweryClick = function(brewery) {
     // Set the content of the infoWindow
-    infoContent = '<div><h4 id="brewery-name">' + brewery.name() + '</h4>' +
-                  '<h5 id="brewery-address">' + brewery.address() + '</h5>' +
-                  '<h6 id="brewery-neighborhood">' + brewery.neighborhood() + '</h6>' +
-                  '<p>Rating on <a id="yelp-url">yelp</a>: ' +
-                  '<img id="yelp"></p></div>';
+    var infoContent = '<div><h4 id="brewery-name">' + brewery.name() + '</h4>' +
+                      '<h5 id="brewery-address">' + brewery.address() + '</h5>' +
+                      '<h6 id="brewery-neighborhood">' + brewery.neighborhood() + '</h6>' +
+                      '<p>Rating on <a id="yelp-url">yelp</a>: ' +
+                      '<img id="yelp"></p></div>';
     infoWindow.setContent(infoContent);
     self.getYelpData(brewery);
 
@@ -94,7 +96,7 @@ var ViewModel = function() {
         // Set the map property of the marker to null so it won't be visible
         self.breweryList()[i].marker().setMap(null);
       }
-    };
+    }
   };
 
   self.getYelpData = function(brewery) {
@@ -169,6 +171,8 @@ var ViewModel = function() {
 
 // Brewery constructor to create breweries & marks from the model
 var Brewery = function(data) {
+  'use strict';
+
   // Set all the properties as knockout observables
   var marker;
   this.name = ko.observable(data.name);
