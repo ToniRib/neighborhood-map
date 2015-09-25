@@ -52,6 +52,9 @@ var ViewModel = function() {
     infoWindow.setContent(infoContent);
     self.getYelpData(brewery);
 
+    // Make the clicked on brewery the center of the map
+    map.panTo(new google.maps.LatLng(brewery.lat(), brewery.lng()));
+
     // Open the infoWindow at the marker location
     infoWindow.open(map, brewery.marker());
 

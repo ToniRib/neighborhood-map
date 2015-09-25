@@ -7,6 +7,7 @@ body {
 
 html,
 body,
+.container,
 .main-map {
   height: 100%;
   width: 100%;
@@ -40,6 +41,10 @@ li:hover {
   margin-right: 1em;
 }
 
+.text-container {
+  padding-left: 15px;
+}
+
 /* InfoWindow Styles */
 
 h4 {
@@ -71,7 +76,7 @@ a:hover {
 
 /* Map */
 
-.map-container {
+.main-map {
   position: relative;
   height: 100vh;
 }
@@ -133,7 +138,7 @@ a:hover {
 }
 
 .nav-expanded a.nav-expander.fixed {
-  right: 20em;
+  right: 15em;
 }
 
 nav {
@@ -142,17 +147,16 @@ nav {
   height: 100%;
   overflow: auto;
   position: fixed;
-  right: -20em;
+  right: -15em;
   font-size: 15px;
   top: 0;
-  width: 20em;
+  width: 15em;
   z-index: 2000;
 
   transition: right 0.3s ease-in-out 0s;
   -webkit-transition: right 0.3s ease-in-out 0s;
   -moz-transition: right 0.3s ease-in-out 0s;
   -o-transition: right 0.3s ease-in-out 0s;
-
 }
 
 .nav-expanded nav {
@@ -177,22 +181,27 @@ nav {
 
 /* Media Queries */
 
-@media (max-width: 992px) {
+@media screen and (max-width: 992px) {
   .desktop-list {
     display: none;
   }
 
   h1,
   h3,
-  form {
-    padding-left: 1em;
+  .search-area {
+    margin: 8px;
+  }
+
+  .search-area {
+    height: 5vh;
   }
 
   .nav-expander.fixed {
     display: block;
   }
 
-  .search-area {
-    margin-bottom: 1em;
+  .main-map {
+    position: absolute;
+    height: 80vh;
   }
 }
