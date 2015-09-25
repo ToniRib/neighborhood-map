@@ -5,6 +5,14 @@ body {
   background-color: #0d0d0d;
 }
 
+html,
+body,
+.main-map {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
 h1 {
   font-size: 1.5em;
   color: #a62739;
@@ -63,10 +71,9 @@ a:hover {
 
 /* Map */
 
-.main-map {
-  height: 600px;
-  width: 100%;
-  margin-top: 1em;
+.map-container {
+  position: relative;
+  height: 100vh;
 }
 
 /* Mobile Styles for Offscreen Menu */
@@ -183,5 +190,9 @@ nav {
 
   .nav-expander.fixed {
     display: block;
+  }
+
+  .search-area {
+    margin-bottom: 1em;
   }
 }

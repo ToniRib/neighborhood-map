@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <title>Denver Brewery Map</title>
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/styles.min.css">
+  <!-- TODO: Change back to min files -->
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/styles.css">
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDK0hCvi3Fh_eOu5CiX_l0A_ElZoZFkWXE"></script>
   <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
   <meta name="viewport" content="width=device-width">
@@ -17,7 +18,7 @@
       <h1>Denver Breweries I've Visited</h1>
       <div id="search">
         <h3>Filter breweries by name or neighborhood:</h3>
-        <form id="brewery-search" data-bind="submit: filterBreweries">
+        <form id="brewery-search" class="search-area" data-bind="submit: filterBreweries">
           <input type="text" name="search-string" id="search-str" class="search-input">
           <input type="submit" value="search" class="search-btn">
         </form>
@@ -28,7 +29,7 @@
     </div>
 
     <!-- Google Maps -->
-    <div class="col-md-9">
+    <div class="col-md-9 map-container">
       <div id="google-map" class="main-map"></div>
     </div>
 
@@ -47,12 +48,13 @@
     <!-- End of mobile navigation -->
 
     <!-- Load the scripts -->
-    <script src="js/lib/jQuery.min.js"></script>
-    <script src="js/lib/knockout-3.2.0.min.js"></script>
+    <!-- TODO: Change back to min files -->
+    <script src="js/lib/jQuery.js"></script>
+    <script src="js/lib/knockout-3.2.0.js"></script>
     <script src="../bower_components/oauth-signature/dist/oauth-signature.js"></script>
-    <script src="js/model.min.js"></script>
-    <script src="js/app.min.js"></script>
-    <script src="js/mobile.min.js"></script>
+    <script src="js/model.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/mobile.js"></script>
 
 </body>
 </html>
