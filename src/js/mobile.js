@@ -8,8 +8,9 @@ $(document).ready(function(){
     e.preventDefault();
     $('body').toggleClass('nav-expanded');
   });
-  $('#nav-close').on('click',function(e){
+  $('.mobile-list').on('click', function(e) {
+    console.log('clicked');
     e.preventDefault();
-    $('body').removeClass('nav-expanded');
-  });
+    $('body').toggleClass('nav-expanded');
+  })
 });

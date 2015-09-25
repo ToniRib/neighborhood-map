@@ -128,8 +128,6 @@ var ViewModel = function() {
       limit: 1
     };
 
-    console.log(parameters);
-
     // Set other API parameters
     var consumerSecret = '8hqIHpplfRBLzs6YOqLZFfkx7jg';
     var tokenSecret = 'evb3bjTox8RNlfZ5Ma74hqJjZWo';
@@ -150,7 +148,6 @@ var ViewModel = function() {
         // Update the infoWindow to display the yelp rating image
         $('#yelp').attr("src", response.businesses[0].rating_img_url);
         $('#yelp-url').attr("href", response.businesses[0].url);
-        console.log(response);
       }
     };
 
