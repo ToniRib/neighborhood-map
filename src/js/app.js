@@ -49,7 +49,7 @@ var ViewModel = function() {
     var infoContent = '<div><h4 id="brewery-name">' + brewery.name() + '</h4>' +
                       '<h5 id="brewery-address">' + brewery.address() + '</h5>' +
                       '<h6 id="brewery-neighborhood">' + brewery.neighborhood() + '</h6>' +
-                      '<p>Rating on <a id="yelp-url">yelp</a>: ' +
+                      '<p id="text">Rating on <a id="yelp-url">yelp</a>: ' +
                       '<img id="yelp"></p></div>';
     infoWindow.setContent(infoContent);
     self.getYelpData(brewery);
@@ -153,6 +153,9 @@ var ViewModel = function() {
         // Update the infoWindow to display the yelp rating image
         $('#yelp').attr("src", response.businesses[0].rating_img_url);
         $('#yelp-url').attr("href", response.businesses[0].url);
+      },
+      error: function() {
+        $('#text').html('Data could not be retrieved from yelp.');
       }
     };
 
